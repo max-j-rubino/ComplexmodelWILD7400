@@ -39,5 +39,15 @@ Sensing: There is not a sensing component to this model.
 
 Interactions: Fish interact when they reproduce, and when the carrying capacity  of the pond  begins to approach. As the  population gets closer to  K, reproductive success and  growth slows.
 
+Stochasticity: Stochasticity in this model results  in the fish's weekly fates (caught and harvested, caught and released survivor, caught and released dead, not caught alive, not caught dead).  These in turn result in  whether  or not the fish spawns or grows. Stochasitisty comes from  these fates being  drawn from  a categorical distribution. Many of  the  probabilities  in the  categorical  distribution are also derived from other distributions.  For  example, vulnerability  is drawn from  a normal  distribution centered  around the parents' mean vulnerability.  There is also  randomness in  which individuals are paired to mate.  Stochasticity is used to represent processes that are impossible to represent mechanically. These processes are either poorly understood or limited by computing power.
 
+Collectives:  Collectives  are not represented  in this model.  However,  there is density  dependence in the number of eggs that survive to  spawners, and the growth coefficient of fish. 
+
+Observations: Outputs  from the model needed to  observe  population level change are: catch per unit effort, population age and  size structure, population size,  and mean vulnerability of fish. 
+
+Initialization: We assume  equal sex  ratios, size,  and age structure.  Fishes vulnerability  will be drawn from  a  BETA(1,1) distribution. Effort is constant, although we may explore adaptive effort. We will  start  with a  burn-in  period of 1000 fish, and run the model until  equilibrium  is reached with effort turned  off. We will use  this as  the control.
+
+Input Data: There is no input  data for this model.
+
+Subroutines: The model will have several subroutines. Weekly there will  be the option  for fish to be caught or not, and die or survive. Fish cannot be caught  twice in the same week. Fish that are not caught will have  a  greater survival, and be  more likely to move to the  next  period.  Yearly each  fish will grow, and then  redproduce. The reproduction  will  result in progeny. These progeny will not  enter  the population  until the  year  after  reproduction  to  avoid  having to model   individual fish reproduction. All year 1 +  fish can reproduce, but the fecundity of smaller fish is lower. Mate  pairing  is random.
 
